@@ -1,0 +1,5 @@
+{
+  "name": "Static Site",
+  "description": "Plain HTML/CSS/JS, no build step — for landing pages or anything that doesn't need a framework.",
+  "stack": "html + css + js"
+}

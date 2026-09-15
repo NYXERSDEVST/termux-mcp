@@ -1,0 +1,32 @@
+{
+  "name": "nyxers-mcp-server",
+  "version": "0.1.0",
+  "description": "MCP server for the Nyxers Workflow Cloud Dev toolkit: run_command, list_templates, export_workspace, browse_url, get_dev_machine_spec.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "nyxers-mcp-server": "dist/index.js"
+  },
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.1",
+    "archiver": "^7.0.1",
+    "playwright": "^1.48.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/archiver": "^6.0.2",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

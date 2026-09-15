@@ -1,0 +1,19 @@
+{
+  "name": "nyxers-workflow-cloud-dev",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Nyxers Workflow Cloud Dev — AI-driven dev dashboard (terminal, copilot, device preview, templates, export, PWA) plus an MCP server for agentic tooling.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev:server": "npm run dev --workspace packages/server",
+    "dev:dashboard": "npm run dev --workspace packages/dashboard",
+    "dev:mcp": "npm run dev --workspace packages/mcp-server"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
