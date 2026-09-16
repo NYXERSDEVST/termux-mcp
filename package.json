@@ -1,10 +1,10 @@
 {
   "name": "openstreamingplatform-render-worker",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "type": "module",
   "engines": {"node": ">=20"},
-  "scripts": {"start": "node server.js"},
+  "scripts": {"start": "node bootstrap.mjs", "mobile:mcp": "node mobile-mcp.mjs"},
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.0",
     "express": "^5.1.0",
