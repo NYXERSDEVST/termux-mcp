@@ -1,13 +1,15 @@
 {
   "name": "openstreamingplatform-render-worker",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
-  "scripts": {
-    "start": "node server.js"
-  },
+  "engines": {"node": ">=20"},
+  "scripts": {"start": "node server.js"},
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.0",
+    "express": "^5.1.0",
     "ffmpeg-static": "^5.2.0",
-    "ws": "^8.18.3"
+    "ws": "^8.18.3",
+    "zod": "^3.25.0"
   }
 }
