@@ -1,5 +1,6 @@
 import express from 'express';
 import http from 'node:http';
+import crypto from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { mkdirSync, existsSync, createReadStream, statSync } from 'node:fs';
 import { join, extname, normalize } from 'node:path';
@@ -166,7 +167,7 @@ app.post('/api/node/heartbeat', requireAuth, (req, res) => res.json({ ok: true, 
 app.get('/hls/:id/:file', (req, res) => { const relative = normalize(`${safeId(req.params.id)}/${req.params.file}`).replace(/^\.\.(\/|\\|$)/, ''); const path = join(hlsRoot, relative); if (!path.startsWith(hlsRoot) || !existsSync(path) || !statSync(path).isFile()) return res.status(404).json({ error: 'media not found' }); res.setHeader('content-type', extname(path) === '.m3u8' ? 'application/vnd.apple.mpegurl' : 'video/mp2t'); res.setHeader('cache-control', extname(path) === '.m3u8' ? 'no-cache' : 'public, max-age=30'); createReadStream(path).pipe(res); });
 
 function buildMcpServer() {
-  const mcp = new McpServer({ name: 'openstreamingplatform-mcp', version: '2.0.0' });
+  const mcp = new McpServer({ name: 'openstreamingplatform-mcp', version: '2.0.1' });
   mcp.tool('platform_status', 'Get Render worker, stream, provider and mobile node status', {}, async () => ({ content: [{ type: 'text', text: JSON.stringify({ providers: providerState(), channels: [...channels.values()].map(channelSnapshot), mobileNodes: [...mobileNodes.values()], startedAt }, null, 2) }] }));
   mcp.tool('ai_generate', 'Generate text through OpenAI, Grok or Claude', { provider: z.enum(['openai', 'grok', 'claude']), prompt: z.string().min(1) }, async ({ provider, prompt }) => ({ content: [{ type: 'text', text: await aiCall(provider, prompt) }] }));
   mcp.tool('stream_start', 'Start an HLS stream from a reachable source URL', { id: z.string().min(1), source: z.string().url() }, async ({ id, source }) => ({ content: [{ type: 'text', text: JSON.stringify(await startChannel({ id, source }), null, 2) }] }));
@@ -186,4 +187,4 @@ const server = http.createServer(app);
 const wss = new WebSocketServer({ noServer: true });
 wss.on('connection', socket => { clients.add(socket); socket.send(JSON.stringify({ type: 'worker.ready', channels: [...channels.values()].map(channelSnapshot), mobileNodes: [...mobileNodes.values()] })); socket.on('close', () => clients.delete(socket)); });
 server.on('upgrade', (req, socket, head) => { if (req.url === '/ws') wss.handleUpgrade(req, socket, head, ws => wss.emit('connection', ws, req)); else socket.destroy(); });
-server.listen(port, '0.0.0.0', () => console.log(`OPENSTREAMINGPLATFORM Render Worker v2 listening on ${port}`));
+server.listen(port, '0.0.0.0', () => console.log(`OPENSTREAMINGPLATFORM Render Worker v2.0.1 listening on ${port}`));
