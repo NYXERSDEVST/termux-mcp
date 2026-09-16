@@ -1,10 +1,24 @@
 {
-  "name": "openstreamingplatform-render-worker",
-  "version": "2.1.1",
+  "name": "nyxers-workflow-cloud-dev",
   "private": true,
+  "version": "0.1.0",
   "type": "module",
-  "engines": {"node": ">=20"},
-  "scripts": {"start": "node server.js", "mobile:mcp": "node mobile-mcp.mjs"},
+  "description": "Nyxers Workflow Cloud Dev — AI-driven dev dashboard (terminal, copilot, device preview, templates, export, PWA) plus an MCP server for agentic tooling.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev:server": "npm run dev --workspace packages/server",
+    "dev:dashboard": "npm run dev --workspace packages/dashboard",
+    "dev:mcp": "npm run dev --workspace packages/mcp-server",
+    "start": "node server.js",
+    "mobile:mcp": "node mobile-mcp.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.0",
     "express": "^5.1.0",

@@ -1,0 +1,5 @@
+{
+  "name": "Minimal React",
+  "description": "A bare-bones Vite + React + TypeScript starter — one component, no router, no state library.",
+  "stack": "vite + react + typescript"
+}

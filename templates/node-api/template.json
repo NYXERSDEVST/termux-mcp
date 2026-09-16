@@ -1,0 +1,5 @@
+{
+  "name": "Node API",
+  "description": "A minimal Express API starter — one health-check route, ready to add more.",
+  "stack": "node + express"
+}

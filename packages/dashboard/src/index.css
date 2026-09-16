@@ -1,0 +1,131 @@
+:root {
+  color-scheme: dark;
+  --bg: #0a0b0d;
+  --panel: #14161a;
+  --border: #24272d;
+  --text: #e6e6e6;
+  --muted: #9aa0a6;
+  --accent: #7ec8b8;
+  --danger: #e08585;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+}
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border);
+  padding: 16px 12px;
+}
+
+.sidebar h1 {
+  font-size: 15px;
+  margin: 0 0 16px;
+  color: var(--accent);
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: var(--panel);
+  color: var(--text);
+}
+
+.main-panel {
+  flex: 1;
+  padding: 20px;
+  min-width: 0;
+}
+
+.panel-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+button {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+input,
+select,
+textarea {
+  background: #0e0f12;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.chat-log {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 60vh;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+
+.chat-bubble {
+  padding: 10px 12px;
+  border-radius: 8px;
+  max-width: 80%;
+  white-space: pre-wrap;
+}
+
+.chat-bubble.user {
+  align-self: flex-end;
+  background: #1d2a27;
+}
+
+.chat-bubble.assistant {
+  align-self: flex-start;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
